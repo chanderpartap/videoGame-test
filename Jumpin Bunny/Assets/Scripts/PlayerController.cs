@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
     private Rigidbody2D rigidBody;
     public float thrust = 10.0f;
     // Start is called before the first frame update
