@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         bool isOnGround = IsOnGround();
         print("is Ground = " + isOnGround);
@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
                 jump();
             }
         }
-
+    }
+    private void FixedUpdate() { 
         if (GameManager.GetInstance().currentGameState == GameState.InGame)
         {
             if (rigidBody.velocity.x < runSpeed)

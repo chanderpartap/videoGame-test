@@ -87,5 +87,12 @@ public class GameManager : MonoBehaviour
         currentGameState = newGameState;
 
     }
-    
+    private void Update()
+    {
+        if (Input.GetKey("s"))
+        {
+            ChangeGameState(GameState.InGame);
+        }
+    }
+
 }
