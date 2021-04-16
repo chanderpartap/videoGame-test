@@ -10,13 +10,20 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayerMask;
     public Animator animator;
     public float runSpeed = 10.0f;
+    private Vector3 initialPosition;
+    private Vector2 initialVelocity;
+    
     //public Vector2 speed = new Vector2(1, 1);
 
     private static PlayerController sharedInstance;
     //Implementing Singleton
     private void Awake()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
         sharedInstance = this;
+        initialPosition = transform.position;
+        initialVelocity = rigidBody.velocity;
+        animator.SetBool("isAlive", true);
     }
     //Getter Method for sharedInstance
     public static PlayerController GetInstance()
@@ -24,11 +31,11 @@ public class PlayerController : MonoBehaviour
         return sharedInstance;
     }
     // Start is called before the first frame update
-    void Start()
+    public void StartGame()
     {
-        
-        rigidBody = GetComponent<Rigidbody2D>();
         animator.SetBool("isAlive", true);
+        transform.position = initialPosition;
+        rigidBody.velocity = initialVelocity;
     }
 
     // Update is called once per frame

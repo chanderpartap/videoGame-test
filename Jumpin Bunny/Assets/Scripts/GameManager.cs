@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     //To Start Game
     public void StartGame()
     {
+        PlayerController.GetInstance().StartGame();
         ChangeGameState(GameState.InGame);
     }
     //To End Game
@@ -89,9 +90,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKey("s"))
+        if (currentGameState != GameState.InGame && Input.GetKey("s"))
         {
             ChangeGameState(GameState.InGame);
+            StartGame();
         }
     }
 
