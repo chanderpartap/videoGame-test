@@ -11,6 +11,18 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public float runSpeed = 10.0f;
     //public Vector2 speed = new Vector2(1, 1);
+
+    private static PlayerController sharedInstance;
+    //Implementing Singleton
+    private void Awake()
+    {
+        sharedInstance = this;
+    }
+    //Getter Method for sharedInstance
+    public static PlayerController GetInstance()
+    {
+        return sharedInstance;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +35,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         bool isOnGround = IsOnGround();
-        print("is Ground = " + isOnGround);
+        //print("is Ground = " + isOnGround);
         animator.SetBool("isGrounded", isOnGround);
         if (GameManager.GetInstance().currentGameState == GameState.InGame)
         {
@@ -60,5 +72,11 @@ public class PlayerController : MonoBehaviour
     {
         //print("Mask = " + groundLayerMask);
         return Physics2D.Raycast(this.transform.position, Vector2.down, 1.0f, groundLayerMask.value);
+    }
+
+    public void KillPlayer()
+    {
+        animator.SetBool("isAlive", false);
+        GameManager.GetInstance().GameOver();
     }
 }
