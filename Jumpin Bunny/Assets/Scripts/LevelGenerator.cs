@@ -7,6 +7,7 @@ public class LevelGenerator : MonoBehaviour
     public List<LevelBlock> legoBlocks = new List<LevelBlock>(); // Sample blocks from where to begin
     List<LevelBlock> currentBlocks = new List<LevelBlock>(); // Blocks added to the game already
     public Transform initialPoint;
+    public byte initialBlockNumber = 2;
 
     private static LevelGenerator _sharedInstance;
     public static LevelGenerator sharedInstance //Another way of defining a getter method
@@ -20,6 +21,10 @@ public class LevelGenerator : MonoBehaviour
     private void Awake()
     {
         _sharedInstance = this;
+        for (byte i = 0; i < initialBlockNumber; i++)
+        {
+            AddNewBlock();
+        }
     }
 
 
@@ -34,11 +39,13 @@ public class LevelGenerator : MonoBehaviour
     {
         
     }
+
+    
     public void AddNewBlock()
     {
-        int rNum = Random.Range(0, legoBlocks.Count - 1);
+        int rNum = Random.Range(0, legoBlocks.Count);
         var block = Instantiate(legoBlocks[rNum]);
-        block.transform.SetParent(this.transform);
+        block.transform.SetParent(this.transform, false);
         Vector3 blockPosiiton = Vector3.zero;
         if(currentBlocks.Count == 0)
         {
