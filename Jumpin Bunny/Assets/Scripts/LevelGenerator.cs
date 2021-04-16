@@ -21,12 +21,21 @@ public class LevelGenerator : MonoBehaviour
     private void Awake()
     {
         _sharedInstance = this;
+        CreateInitialBlocks();
+    }
+    
+    public void CreateInitialBlocks()
+    {
+        if (currentBlocks.Count > 0)
+        {
+            return;
+        }
         for (byte i = 0; i < initialBlockNumber; i++)
         {
             AddNewBlock();
         }
-    }
 
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -64,5 +73,13 @@ public class LevelGenerator : MonoBehaviour
         var oldBlock = currentBlocks[0];
         currentBlocks.Remove(oldBlock);
         Destroy(oldBlock.gameObject);
+    }
+
+    public void RemoveAllBlocks()
+    {
+        while (currentBlocks.Count > 0)  
+        {
+            RemoveOldBlock();
+        }
     }
 }

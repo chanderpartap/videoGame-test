@@ -36,11 +36,13 @@ public class GameManager : MonoBehaviour
     {
         PlayerController.GetInstance().StartGame();
         ChangeGameState(GameState.InGame);
+        LevelGenerator.sharedInstance.CreateInitialBlocks();
     }
     //To End Game
     public void GameOver()
     {
         ChangeGameState(GameState.GameOver);
+        LevelGenerator.sharedInstance.RemoveAllBlocks();
     }
     //When player wants to Quit the game and go back to main menu
     public void BackToMainMenu()
