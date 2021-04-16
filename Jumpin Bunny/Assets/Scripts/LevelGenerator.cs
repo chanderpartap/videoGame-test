@@ -36,6 +36,20 @@ public class LevelGenerator : MonoBehaviour
     }
     public void AddNewBlock()
     {
-
+        int rNum = Random.Range(0, legoBlocks.Count - 1);
+        var block = Instantiate(legoBlocks[rNum]);
+        block.transform.SetParent(this.transform);
+        Vector3 blockPosiiton = Vector3.zero;
+        if(currentBlocks.Count == 0)
+        {
+            blockPosiiton = initialPoint.position;
+        }
+        else
+        {
+            int lastBlockPos = currentBlocks.Count - 1;
+            blockPosiiton = currentBlocks[lastBlockPos].exitPoint.position;
+        }
+        block.transform.position = blockPosiiton;
+        currentBlocks.Add(block);
     }
 }
