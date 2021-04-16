@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayerMask;
     public Animator animator;
     public float runSpeed = 10.0f;
+    //public Vector2 speed = new Vector2(1, 1);
     // Start is called before the first frame update
     void Start()
     {
@@ -31,16 +32,16 @@ public class PlayerController : MonoBehaviour
             jump();
         }
 
-        /*if(Input.GetKeyDown(KeyCode.D))  
-        {
-            rigidBody.AddForce(new Vector2(runSpeed, 0), ForceMode2D.Impulse);
-            //transform.position = new Vector2(transform.position.x + runSpeed * Time.deltaTime, rigidBody.position.y);
-        }*/
         if(rigidBody.velocity.x < runSpeed)
         {
             rigidBody.velocity = new Vector2(runSpeed, rigidBody.velocity.y);
         }
-       
+        /* To move front and back
+        float inputX = Input.GetAxis("Horizontal");
+        //float inputY = Input.GetAxis("Vertical");
+        Vector3 movement = new Vector3(speed.x * inputX, 0, 0);
+        movement *= Time.deltaTime;
+        transform.Translate(movement);*/
     }
 
     void jump()
