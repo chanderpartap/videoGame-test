@@ -9,15 +9,27 @@ using UnityEngine;
 /// 4> Pause
 / </summary>*/
 
-enum GameState
+public enum GameState
 {
     Menu,
     InGame,
-    GameOver
+    GameOver,
+    Resume
 }
 public class GameManager : MonoBehaviour
 {
-    GameState currentGameState = GameState.Menu; //Default value
+    public GameState currentGameState = GameState.Menu; //Default value
+    private static GameManager sharedInstance;
+    //Implementing Singleton
+    private void Awake()
+    {
+        sharedInstance = this;
+    }
+    //Getter Method for sharedInstance
+    public static GameManager GetInstance()
+    {
+        return sharedInstance;
+    }
     // Start and Update not required
     //To Start Game
     public void StartGame()
@@ -33,6 +45,11 @@ public class GameManager : MonoBehaviour
     public void BackToMainMenu()
     {
         ChangeGameState(GameState.Menu);
+    }
+
+    public void Resume()
+    {
+        ChangeGameState(GameState.Resume);
     }
     //Method to help change states
     //All logic goes here (mostly)
@@ -50,6 +67,9 @@ public class GameManager : MonoBehaviour
         {
             //Load Scores or End game
 
+        } else if(newGameState == GameState.Resume)
+        {
+            //Load Pause Menu
         }
         else
         {

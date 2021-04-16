@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         rigidBody = GetComponent<Rigidbody2D>();
         animator.SetBool("isAlive", true);
     }
@@ -24,17 +25,23 @@ public class PlayerController : MonoBehaviour
         bool isOnGround = IsOnGround();
         print("is Ground = " + isOnGround);
         animator.SetBool("isGrounded", isOnGround);
-        if ((Input.GetMouseButtonDown(0)
-            || Input.GetKeyDown(KeyCode.Space)
-            || Input.GetKeyDown(KeyCode.W)) && isOnGround)
+        if (GameManager.GetInstance().currentGameState == GameState.InGame)
         {
-            //print("Left button or space or w pressed!");
-            jump();
+            if ((Input.GetMouseButtonDown(0)
+                || Input.GetKeyDown(KeyCode.Space)
+                || Input.GetKeyDown(KeyCode.W)) && isOnGround)
+            {
+                //print("Left button or space or w pressed!");
+                jump();
+            }
         }
 
-        if(rigidBody.velocity.x < runSpeed)
+        if (GameManager.GetInstance().currentGameState == GameState.InGame)
         {
-            rigidBody.velocity = new Vector2(runSpeed, rigidBody.velocity.y);
+            if (rigidBody.velocity.x < runSpeed)
+            {
+                rigidBody.velocity = new Vector2(runSpeed, rigidBody.velocity.y);
+            }
         }
         /* To move front and back
         float inputX = Input.GetAxis("Horizontal");
