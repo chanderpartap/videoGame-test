@@ -59,4 +59,10 @@ public class LevelGenerator : MonoBehaviour
         block.transform.position = blockPosiiton;
         currentBlocks.Add(block);
     }
+    public void RemoveOldBlock()
+    {
+        var oldBlock = currentBlocks[0];
+        currentBlocks.Remove(oldBlock);
+        Destroy(oldBlock.gameObject);
+    }
 }
