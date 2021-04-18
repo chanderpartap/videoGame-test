@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public Canvas menuCanvas;
     public Canvas gameMenu;
     public Canvas gameOver;
+    int collectedCoins = 0;
     //Implementing Singleton
     private void Awake()
     {
@@ -115,4 +116,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void CollectCoins()
+    {
+        collectedCoins++;
+    }
+    public int GetCollectedCoins()
+    {
+        return collectedCoins;
+    }
 }
