@@ -49,12 +49,14 @@ public class GameManager : MonoBehaviour
         PlayerController.GetInstance().StartGame();
         ChangeGameState(GameState.InGame);
         LevelGenerator.sharedInstance.CreateInitialBlocks();
+        InGameView.GetInstance().ShowHighestScore();
     }
     //To End Game
     public void GameOver()
     {
         ChangeGameState(GameState.GameOver);
         LevelGenerator.sharedInstance.RemoveAllBlocks();
+        GameOverView.GetInstance().UpdateGUI();
     }
     //When player wants to Quit the game and go back to main menu
     public void BackToMainMenu()
@@ -95,15 +97,6 @@ public class GameManager : MonoBehaviour
         {
             newGameState = GameState.Menu;
         }
-        //Construct Swith in Scripting
-        /*
-         * switch(newGameState)
-         * {
-         * case GameState.Menu
-         *Load menu
-         *break;
-         * }
-         */
         currentGameState = newGameState;
 
     }
@@ -119,6 +112,7 @@ public class GameManager : MonoBehaviour
     public void CollectCoins()
     {
         collectedCoins++;
+        InGameView.GetInstance().UpdateCoins();
     }
     public int GetCollectedCoins()
     {
