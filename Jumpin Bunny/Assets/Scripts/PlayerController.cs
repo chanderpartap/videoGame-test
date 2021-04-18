@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 10.0f;
     private Vector3 initialPosition;
     private Vector2 initialVelocity;
+    private const string HIGH_SCORE_KEY = "highestScore";
     
     //public Vector2 speed = new Vector2(1, 1);
 
@@ -85,5 +86,22 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetBool("isAlive", false);
         GameManager.GetInstance().GameOver();
+        int highestScore = PlayerPrefs.GetInt(HIGH_SCORE_KEY); // playerprefab to store preferences 
+        int currentScore = GetDistance();
+        if(currentScore > highestScore)
+        {
+            PlayerPrefs.SetInt(HIGH_SCORE_KEY, currentScore); //setting high score
+        }
+    }
+
+    public int GetDistance()
+    {
+        var distance = (int) Vector2.Distance(initialPosition, transform.position);
+
+        return distance;
+    }
+    public int GetMaxScore()
+    {
+        return PlayerPrefs.GetInt(HIGH_SCORE_KEY);
     }
 }

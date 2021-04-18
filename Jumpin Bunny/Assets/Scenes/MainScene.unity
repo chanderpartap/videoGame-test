@@ -1630,6 +1630,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinsLabel: {fileID: 1047729517}
+  scoreLabel: {fileID: 1245023967}
+  highestScoreText: {fileID: 60965935}
 --- !u!4 &786664765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9097778982813848711, guid: 56f753a36a3a02b4c8d2e6646f828694,
