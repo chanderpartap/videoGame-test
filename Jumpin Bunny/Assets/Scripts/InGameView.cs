@@ -28,7 +28,6 @@ public class InGameView : MonoBehaviour
     {
         if(GameManager.GetInstance().currentGameState == GameState.InGame)
         {
-            
             scoreLabel.text = PlayerController.GetInstance().GetDistance().ToString();
         }
     }

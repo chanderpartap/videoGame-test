@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
     public Canvas menuCanvas;
     public Canvas gameMenu;
     public Canvas gameOver;
-    int collectedCoins = 0;
+    public Canvas creditsCanvas;
+    public int collectedCoins = 0;
     //Implementing Singleton
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         menuCanvas.enabled = true;
         gameMenu.enabled = false;
         gameOver.enabled = false;
+        creditsCanvas.enabled = false;
     }
     public void StartGame()
     {
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour
             menuCanvas.enabled = true;
             gameMenu.enabled = false;
             gameOver.enabled = false;
+            creditsCanvas.enabled = false;
 
         } else if(newGameState == GameState.InGame)
         {
@@ -85,6 +88,7 @@ public class GameManager : MonoBehaviour
             menuCanvas.enabled = false;
             gameMenu.enabled = true;
             gameOver.enabled = false;
+            creditsCanvas.enabled = false;
 
         } else if(newGameState == GameState.GameOver)
         {
@@ -92,8 +96,16 @@ public class GameManager : MonoBehaviour
             menuCanvas.enabled = false;
             gameMenu.enabled = false;
             gameOver.enabled = true;
+            creditsCanvas.enabled = false;
 
-        } else
+        } else if(newGameState == GameState.Resume)
+        {
+            menuCanvas.enabled = false;
+            gameMenu.enabled = false;
+            gameOver.enabled = false;
+            creditsCanvas.enabled = true;
+        }
+        else
         {
             newGameState = GameState.Menu;
         }

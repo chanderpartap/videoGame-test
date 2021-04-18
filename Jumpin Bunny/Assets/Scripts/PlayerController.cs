@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
     public int GetDistance()
     {
-        var distance = (int) Vector2.Distance(initialPosition, transform.position);
+        var distance = (int) Vector2.Distance(initialPosition, transform.position) + (int) GameManager.GetInstance().collectedCoins;
 
         return distance;
     }
