@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour
         {
             if ((Input.GetMouseButtonDown(0)
                 || Input.GetKeyDown(KeyCode.Space)
-                || Input.GetKeyDown(KeyCode.W)) && isOnGround)
+                || Input.GetKeyDown(KeyCode.W))
+                || (Input.touchCount>0 && Input.touches[0].phase == TouchPhase.Began) && isOnGround)
             {
                 //print("Left button or space or w pressed!");
                 jump();

@@ -130,4 +130,8 @@ public class GameManager : MonoBehaviour
     {
         return collectedCoins;
     }
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
