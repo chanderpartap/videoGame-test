@@ -4760,9 +4760,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11432074, guid: 6253ae2dfd52c459a825a39575bb3087, type: 3}
       propertyPath: m_Text
-      value: 'Chander Partap Singh
+      value: 'Dev1
 
-        Manisha Pathania'
+        Dev2'
       objectReference: {fileID: 0}
     - target: {fileID: 11432074, guid: 6253ae2dfd52c459a825a39575bb3087, type: 3}
       propertyPath: m_Color.b
